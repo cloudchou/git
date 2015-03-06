@@ -1,0 +1,13 @@
+git-gui.tcl : change "evel exec comand" to  'eval [list git_read]'
+ if we use 'eval exec $opt $cmdp $args' to execute git command, tcl engine will convert the output of the git comand with the rule  system default code page to unicode.
+ But cp936 -> unicode conversion implicitly done by exec is not reversible.
+ So we have to use git_read instead.
+
+Bug report and an original reproducer by Cloud Chou:
+https://github.com/msysgit/git/issues/302
+
+Thanks-to: dscho
+Thanks-to: patthoyts
+Signed-off-by: Karsten Blees <blees@dcon.de>
+Original-test-by: Cloud Chou <515312382@qq.com>
+Signed-off-by: Cloud Chou <515312382@qq.com>
